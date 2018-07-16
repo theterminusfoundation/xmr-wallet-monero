@@ -166,6 +166,7 @@ namespace tools
     static std::unique_ptr<wallet2> make_dummy(const boost::program_options::variables_map& vm, const std::function<boost::optional<password_container>(const char *, bool)> &password_prompter);
 
     static bool verify_password(const std::string& keys_file_name, const epee::wipeable_string& password, bool no_spend_key, hw::device &hwdev);
+    static int query_hardware(const std::string& keys_file_name, const epee::wipeable_string& password);
 
     wallet2(cryptonote::network_type nettype = cryptonote::MAINNET, bool restricted = false);
     ~wallet2();
