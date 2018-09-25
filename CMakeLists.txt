@@ -921,6 +921,7 @@ endif()
 find_library(PGM_LIBRARY pgm)
 find_library(NORM_LIBRARY norm)
 find_library(SODIUM_LIBRARY sodium)
+include_directories(${LIBSODIUM_INCLUDE_DIR})
 
 if(PGM_LIBRARY)
   set(ZMQ_LIB "${ZMQ_LIB};${PGM_LIBRARY}")
