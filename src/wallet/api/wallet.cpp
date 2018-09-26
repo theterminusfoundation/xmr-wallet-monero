@@ -439,7 +439,7 @@ bool WalletImpl::create(const std::string &path, const std::string &password, co
     m_wallet->set_seed_language(language);
     crypto::secret_key recovery_val, secret_key;
     try {
-        recovery_val = m_wallet->generate(path, password, secret_key, false, false);
+        recovery_val = m_wallet->generate(path, password, secret_key, false);
         m_password = password;
         clearStatus();
     } catch (const std::exception &e) {
@@ -609,7 +609,7 @@ bool WalletImpl::recoverFromKeysWithPassword(const std::string &path,
             LOG_PRINT_L1("Generated new view only wallet from keys");
         }
         if(has_spendkey && !has_viewkey) {
-           m_wallet->generate(path, password, spendkey, true, false, false);
+           m_wallet->generate(path, password, spendkey, true, false);
            setSeedLanguage(language);
            LOG_PRINT_L1("Generated deterministic wallet from spend key with seed language: " + language);
         }
@@ -629,7 +629,7 @@ bool WalletImpl::recoverFromDevice(const std::string &path, const std::string &p
     m_recoveringFromDevice = true;
     try
     {
-        m_wallet->restore(path, password, device_name, false);
+        m_wallet->restore(path, password, device_name);
         LOG_PRINT_L1("Generated new wallet from device: " + device_name);
     }
     catch (const std::exception& e) {
@@ -699,7 +699,7 @@ bool WalletImpl::recover(const std::string &path, const std::string &password, c
 
     try {
         m_wallet->set_seed_language(old_language);
-        m_wallet->generate(path, password, recovery_key, true, false);
+        m_wallet->generate(path, password, recovery_key, true);
 
     } catch (const std::exception &e) {
         setStatusCritical(e.what());
