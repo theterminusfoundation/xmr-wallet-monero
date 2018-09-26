@@ -41,7 +41,15 @@ set(device_headers
 
 if(MONERUJO_HIDAPI)
     add_definitions(-DHAVE_MONERUJO)
-    set(device_headers ${device_headers} monerujo_ledger.h)
+    set(device_sources
+      ${device_sources}
+      device_ledger.cpp
+      )
+    set(device_headers
+      ${device_headers}
+      device_ledger.hpp
+      device_io_monerujo.hpp
+      )
 else ()
   if(HIDAPI_FOUND)
     set(device_sources
