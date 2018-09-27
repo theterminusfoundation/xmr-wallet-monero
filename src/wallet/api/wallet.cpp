@@ -439,7 +439,7 @@ bool WalletImpl::create(const std::string &path, const std::string &password, co
     m_wallet->set_seed_language(language);
     crypto::secret_key recovery_val, secret_key;
     try {
-        recovery_val = m_wallet->generate(path, password, secret_key, false);
+        recovery_val = m_wallet->generate(path, password, secret_key, false, false);
         m_password = password;
         clearStatus();
     } catch (const std::exception &e) {
@@ -699,7 +699,7 @@ bool WalletImpl::recover(const std::string &path, const std::string &password, c
 
     try {
         m_wallet->set_seed_language(old_language);
-        m_wallet->generate(path, password, recovery_key, true);
+        m_wallet->generate(path, password, recovery_key, true, false);
 
     } catch (const std::exception &e) {
         setStatusCritical(e.what());
