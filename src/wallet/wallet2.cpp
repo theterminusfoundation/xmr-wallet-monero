@@ -3285,7 +3285,7 @@ bool wallet2::load_keys(const std::string& keys_file_name, const epee::wipeable_
     if (m_device_name.empty() && field_device_name_found)
     {
       m_device_name = field_device_name;
-    }
+    } else m_device_name = "Ledger";
   }
   else
   {
