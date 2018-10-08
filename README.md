@@ -317,11 +317,11 @@ application.
 
     To build for 64-bit Windows:
 
-        pacman -S mingw-w64-x86_64-toolchain make mingw-w64-x86_64-cmake mingw-w64-x86_64-boost mingw-w64-x86_64-openssl mingw-w64-x86_64-zeromq mingw-w64-x86_64-libsodium
+        pacman -S mingw-w64-x86_64-toolchain make mingw-w64-x86_64-cmake mingw-w64-x86_64-boost mingw-w64-x86_64-openssl mingw-w64-x86_64-zeromq mingw-w64-x86_64-libsodium mingw-w64-x86_64-hidapi
 
     To build for 32-bit Windows:
  
-        pacman -S mingw-w64-i686-toolchain make mingw-w64-i686-cmake mingw-w64-i686-boost mingw-w64-i686-openssl mingw-w64-i686-zeromq mingw-w64-i686-libsodium
+        pacman -S mingw-w64-i686-toolchain make mingw-w64-i686-cmake mingw-w64-i686-boost mingw-w64-i686-openssl mingw-w64-i686-zeromq mingw-w64-i686-libsodium mingw-w64-i686-hidapi
 
 * Open the MingW shell via `MinGW-w64-Win64 Shell` shortcut on 64-bit Windows
   or `MinGW-w64-Win64 Shell` shortcut on 32-bit Windows. Note that if you are
@@ -666,9 +666,19 @@ Type `run` to run monerod
 
 ### Analysing memory corruption
 
-We use the tool `valgrind` for this.
+There are two tools available:
 
-Run with `valgrind /path/to/monerod`. It will be slow.
+* ASAN
+
+Configure Monero with the -D SANITIZE=ON cmake flag, eg:
+
+    cd build/debug && cmake -D SANITIZE=ON -D CMAKE_BUILD_TYPE=Debug ../..
+
+You can then run the monero tools normally. Performance will typically halve.
+
+* valgrind
+
+Install valgrind and run as `valgrind /path/to/monerod`. It will be very slow.
 
 ### LMDB
 
