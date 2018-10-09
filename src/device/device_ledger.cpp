@@ -176,7 +176,7 @@ namespace hw {
     #define INS_GET_RESPONSE                    0xc0
 
 #ifndef HAVE_MONERUJO
-    device_ledger::device_ledger(): hw_device(0x0101, 0x05, 64, 10000) {
+    device_ledger::device_ledger(): hw_device(0x0101, 0x05, 64, 120000) {
 #else
     device_ledger::device_ledger() {
 #endif
