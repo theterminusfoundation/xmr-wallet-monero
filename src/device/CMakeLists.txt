@@ -88,5 +88,6 @@ target_link_libraries(device
     ringct_basic
     ${OPENSSL_CRYPTO_LIBRARIES}
   PRIVATE
+    version
     ${Blocks}
     ${EXTRA_LIBRARIES})
